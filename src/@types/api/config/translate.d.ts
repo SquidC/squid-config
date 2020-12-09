@@ -16,7 +16,6 @@ declare namespace translate {
    * @id translate.first
    */
   interface first {
-    id?: string;
     path?: string
   }
 

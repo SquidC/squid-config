@@ -71,6 +71,6 @@ export function createServer(c: Config, schema: Obj | Obj[]): HttpServe {
 export function Init({engine, config, router, server }:HttpServe) {
   engine.use(router.routes())
   engine.use(router.allowedMethods())
-  server.listen(config.port,config.host)
+  server.listen(config.port, config.host)
   system.info(chalk.green(`http server ${chalk.blue(`http://${config.host || "localhost"}:${config.port}`)}`))
 }

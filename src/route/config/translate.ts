@@ -1,5 +1,6 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
+import { Translate } from "src/models/translate";
 import { services } from ".";
 
 export default (svr: services) => ({
@@ -13,8 +14,11 @@ export default (svr: services) => ({
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }
-    // const res = await svr.config.translate.add()
-    // c.json(ecode.OK, res, next)
+    const translateObj = new Translate()
+    translateObj.path = params.path
+    translateObj.defaultValue = params.defaultValue
+    const res = await svr.config.translate.add(translateObj)
+    c.json(ecode.OK, res, next)
   },
 
   /**
@@ -27,7 +31,7 @@ export default (svr: services) => ({
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }
-    const res = await svr.config.translate.first()
+    const res = await svr.config.translate.select(params.path)
     // 参数校验
     c.json(ecode.OK, res, next)
   }

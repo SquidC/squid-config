@@ -6,9 +6,6 @@ export let httpLog: log4js.Logger;
 export function Init(opts: ArgsOptions) {
   log4js.configure({
     appenders: {
-      console: {
-        type: "stdout",
-      },
       httpLog: {
         type: "dateFile",
         encoding: "utf-8",
@@ -21,7 +18,7 @@ export function Init(opts: ArgsOptions) {
         alwaysIncludePattern: true,
       },
     },
-    categories: { default: { appenders: ["httpLog", "console"], level: "info" } }
+    categories: { default: { appenders: ["httpLog"], level: "info" } }
   });
 
   httpLog = log4js.getLogger("httpLog");

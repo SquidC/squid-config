@@ -14,10 +14,10 @@ export default (dao: DaoContext) => ({
   },
 
   /**
-   * translate first
+   * translate select
    */
-  first: async () => {
-    // route
+  select: async (path?: string) => {
+    return await dao.mongo.manager.getMongoRepository(Translate).findOne({path})
   }
 })
 

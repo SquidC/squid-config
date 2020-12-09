@@ -44,6 +44,12 @@ export class Router {
   path!: string;
 
   /**
+   * 父路由
+   */
+  // @Column()
+  // parentId!: ObjectID;
+
+  /**
    * 路由渲染数据
    */
   @Column(() => RouterMeta)
@@ -55,11 +61,5 @@ export class Router {
   @OneToOne(() => Project)
   @JoinColumn()
   project!: Project;
-
-  /**
-   * 子路由
-   */
-  @Column(() => Router)
-  children!: Router;
 
 }

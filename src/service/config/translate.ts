@@ -14,10 +14,10 @@ export default (s: ServiceContext) => ({
   },
 
   /**
-   * template first
+   * template select
   */
-  first: async () => {
-    return await s.config.translate.first()
+  select: async (path?: string) => {
+    return await s.config.translate.select(path)
   },
 
 })

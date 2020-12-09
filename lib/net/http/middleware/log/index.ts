@@ -1,5 +1,6 @@
+import chalk = require("chalk");
 import koa = require("koa")
-import { httpLog } from "lib/log"
+import { httpLog, system } from "lib/log"
 
 /**
  * 额外输出log
@@ -12,6 +13,7 @@ const expansLog = async (ctx: koa.Context, next: koa.Next) => {
   const execTime = Date.now()
   const responseTime = execTime - startTime;
   httpLog.info(`${ctx.url}\t${responseTime}ms`);
+  system.info(`${chalk.bgBlueBright(ctx.method)}\t${chalk.yellow(ctx.url)}\t${chalk.green(`${responseTime}ms`)}`);
 }
 
 export default expansLog

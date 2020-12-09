@@ -62,7 +62,7 @@ export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>
     const validate = ajv.getSchema(path)
     if(validate) {
       if(validate(data)) {
-        return data
+        return null
       } else {
         return (validate.errors as Ajv.ErrorObject[])
       }

@@ -1,3 +1,4 @@
+import { Translate } from "src/models/translate";
 import { ServiceContext } from ".";
 
 /**
@@ -8,15 +9,15 @@ export default (s: ServiceContext) => ({
   /**
    * template add
    */
-  add: async (name: string, description: string) => {
-    return await s.template.template.add(name, description);
+  add: async (obj: Translate) => {
+    return await s.config.translate.add(obj);
   },
 
   /**
    * template first
   */
-  first: async (name: string) => {
-    return await s.template.template.first(name)
+  first: async () => {
+    return await s.config.translate.first()
   },
 
 })

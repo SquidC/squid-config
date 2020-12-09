@@ -19,6 +19,6 @@ declare module "koa" {
     /**
      * 校验数据
      */
-    validate: <T>(path:string, data: T) => T | Ajv.ErrorObject[];
+    validate: <T>(path:string, data: T) => Ajv.ErrorObject[] | null;
   }
 }

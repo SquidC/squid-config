@@ -1,5 +1,5 @@
-import templateDao = require("src/dao/template")
-import template from "./template"
+import configDao = require("src/dao/config")
+import translate from "./translate"
 import conf = require("src/conf")
 // import { NonPromise } from "lib/types";
 
@@ -7,7 +7,7 @@ import conf = require("src/conf")
  * service上下文 依赖的dao
  */
 export interface ServiceContext {
-  template: NonPromise<ReturnType<typeof templateDao.New>>;
+  config: NonPromise<ReturnType<typeof configDao.New>>;
 }
 
 
@@ -16,14 +16,14 @@ export interface ServiceContext {
  * @param c Dao配置
  */
 export async function New(c: conf.Config) {
-  const templateDAO = await templateDao.New(c);
+  const templateDAO = await configDao.New(c);
 
   // 初始化服务
   const service: ServiceContext = {
-    template: templateDAO,
+    config: templateDAO,
   }
 
   return {
-    template: template(service)
+    translate: translate(service)
   }
 }

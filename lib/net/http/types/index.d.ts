@@ -3,9 +3,9 @@
  * DefaultContext 可以扩展 context
  * https://blog.csdn.net/roamingcode/article/details/107084933
 */
+import { ValidationError } from "jsonschema"
 import Koa from "koa"
-import Ajv from "ajv"
-import {Code} from "lib/ecode"
+import { Code } from "lib/ecode"
 
 declare module "koa" {
   /**
@@ -19,6 +19,6 @@ declare module "koa" {
     /**
      * 校验数据
      */
-    validate: <T>(path:string, data: T) => Ajv.ErrorObject[] | null;
+    validate: <T>(path:string, data: T) => ValidationError[] | null;
   }
 }

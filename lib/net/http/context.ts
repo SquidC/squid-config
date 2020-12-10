@@ -1,15 +1,13 @@
 import Koa = require("koa")
-import Ajv from "ajv";
+import { Schema, Validator } from "jsonschema"
 import { Code } from "lib/ecode"
-import { system } from "lib/log";
-import chalk from "chalk";
 
 export type Context = Koa.Context;
 
 export type Next = Koa.Next;
 
 
-export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>, schema: Obj | Obj[]){
+export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>, schema: Schema){
 
   /**
    * ⭐ 格式化放回
@@ -37,37 +35,18 @@ export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>
   /**
    * ⭐ 加载字段校验模块
   */
-  function ajvAddSchema(ajv: Ajv.Ajv, schema: Obj) {
-    Object.keys(schema["definitions"]).forEach((key:string) => {
-      const jsonSchema = schema["definitions"][key]
-      ajv.addSchema(jsonSchema, key)
-      system.info(chalk.blueBright(`add json schema ${chalk.yellow(key)}`))
-    })
-  }
 
-  const ajv = new Ajv({
-    allErrors: true,
-    useDefaults: true,
-    schemaId: "auto",
-  })
-  system.info(chalk.gray(`loading json schema...`))
-  if(schema instanceof Array) {
-    schema.forEach(el => ajvAddSchema(ajv, el))
-  } else {
-    ajvAddSchema(ajv, schema)
-  }
-  system.info(chalk.green("load json schema ok"))
+  const v = new Validator()
+  v.addSchema(schema, "/api")
 
   engine.context.validate = function<T>(path:string, data:T) {
-    const validate = ajv.getSchema(path)
-    if(validate) {
-      if(validate(data)) {
-        return null
-      } else {
-        return (validate.errors as Ajv.ErrorObject[])
-      }
+    const validate = v.validate(data, {
+      $ref: `api#/definitions/${path}`
+    })
+    if(validate.valid) {
+      return null
     } else {
-      throw new Error("this path can't find the validate schema.");
+      return validate.errors
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Project } from "src/models/project";
-import { ObjectID } from "typeorm";
+import { ObjectID } from "mongodb";
 import { DaoContext } from ".";
 
 /**
@@ -24,8 +24,8 @@ export default (dao: DaoContext) => ({
   /**
    * Project first
    */
-  first: async (id: string) => {
-    return await dao.mongo.manager.getMongoRepository(Project).findOne({id: new ObjectID(id)})
+  first: async (_id: string) => {
+    return await dao.mongo.manager.getMongoRepository(Project).findOne({_id: new ObjectID(_id) as any})
   }
 })
 

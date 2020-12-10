@@ -1,13 +1,13 @@
 /**
  * 翻译
  */
-import { Column, Entity, ObjectIdColumn, ObjectID } from "typeorm";
+import { ObjectID, Column, Entity, ObjectIdColumn } from "typeorm";
 
 @Entity()
 export class Translate {
 
   @ObjectIdColumn()
-  id!: ObjectID;
+  _id!: ObjectID;
 
   /**
    * i18n索引路径

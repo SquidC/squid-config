@@ -1,4 +1,5 @@
 {
+    "$id": "api",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "ProjectAdd": {
@@ -19,6 +20,34 @@
         },
         "ProjectFirst": {
             "id": "ProjectFirst",
+            "properties": {
+                "path": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RouteAdd": {
+            "id": "RouteAdd",
+            "properties": {
+                "project": {
+                    "type": "string"
+                },
+                "route": {
+                    "items": {
+                        "$ref": "api#/definitions/route"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "project",
+                "route"
+            ],
+            "type": "object"
+        },
+        "RouteFirst": {
+            "id": "RouteFirst",
             "properties": {
                 "path": {
                     "type": "string"
@@ -49,6 +78,26 @@
                     "type": "string"
                 }
             },
+            "type": "object"
+        },
+        "route": {
+            "properties": {
+                "children": {
+                    "items": {
+                        "$ref": "api#/definitions/route"
+                    },
+                    "type": "array"
+                },
+                "meta": {
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "meta",
+                "path"
+            ],
             "type": "object"
         }
     }

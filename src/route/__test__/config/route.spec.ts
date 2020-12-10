@@ -17,7 +17,6 @@ describe("route", () => {
   test("add", async () => {
     // 请求数据
     const req = await add(mockRoutes)
-
     expect(req.data.code).toBe(0)
   })
 })

@@ -13,6 +13,7 @@ export default (svr: services) => ({
     const err = c.validate("ProjectAdd", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
+      return
     }
     const res = await svr.config.project.add(params)
     c.json(ecode.OK, res, next)

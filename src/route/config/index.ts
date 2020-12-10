@@ -3,6 +3,7 @@ import configSvr = require("src/service/config")
 import conf = require("src/conf")
 import translate from "./translate"
 import project from "./project"
+import route from "./route"
 
 /**
  * 依赖服务
@@ -23,6 +24,7 @@ export async function New(c: conf.Config, router: Router) {
   // 初始化路由
   const translateRoute = translate(services)
   const projectRoute = project(services)
+  const routeRoute = route(services)
 
   /**
    * 生成路由表
@@ -35,5 +37,8 @@ export async function New(c: conf.Config, router: Router) {
 
   router.post("/project/add", projectRoute.add)
   router.get("/project/first", projectRoute.first)
+
+  router.post("/route/add", routeRoute.add)
+  router.get("/route/first", routeRoute.first)
 
 }

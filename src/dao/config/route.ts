@@ -2,19 +2,20 @@ import { Router } from "src/models/route";
 import { DaoContext } from ".";
 
 /**
- * Project dao
+ * Router dao
  * @param dao DaoContext dao上下文
  */
 export default (dao: DaoContext) => ({
+
   /**
-   * Project add
-   */
-  add: async (obj: Router) => {
+  * Router add many
+  */
+  addMany: async (obj: Router[]) => {
     return await dao.mongo.manager.save(obj)
   },
 
   /**
-   * Project select
+   * Router select
    */
   select: async (path?: string) => {
     return await dao.mongo.manager.getMongoRepository(Router).findOne({path})

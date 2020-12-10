@@ -9,7 +9,7 @@ username="root"
 password="1234"
 [MONGODB]
 database="config_center"
-host="localhost"
+host="172.16.3.77" #"localhost"
 port=27017
 username="root"
 password="1234"

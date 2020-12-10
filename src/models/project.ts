@@ -1,6 +1,5 @@
 import { Column, Entity, ObjectIdColumn, ObjectID } from "typeorm";
 
-
 /**
  * 项目表
  */
@@ -8,7 +7,7 @@ import { Column, Entity, ObjectIdColumn, ObjectID } from "typeorm";
 export class Project {
 
   @ObjectIdColumn()
-  id!: ObjectID;
+  _id!: ObjectID;
 
   /**
    * 名称

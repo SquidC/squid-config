@@ -2,6 +2,7 @@
  * 路由
  */
 import { RouteAdd } from "src/api/route";
+import { Router } from "src/models/route";
 // import { Router } from "src/models/route";
 import { ServiceContext } from ".";
 
@@ -15,16 +16,20 @@ export default (s: ServiceContext) => ({
    */
   add: async (obj: RouteAdd) => {
     // TODO 判断path唯一
-    obj
-    // const projectId = await s.config.project.first(obj.project)
-    // let routes: Router[];
-    // obj.route.forEach(el => {
-    //   routes.push({
-    //     path: el.path,
-    //     meta: el.meta,
-
-    //   })
-    // })
+    const project = await s.config.project.first(obj.project)
+    if(project) {
+      const routes: Router[] =[];
+      obj.route.forEach(el => {
+        const tmp = new Router()
+        tmp.path = el.path,
+        tmp.meta = el.meta,
+        tmp.project = project,
+        tmp.parentId = "0",
+        routes.push(tmp)
+      })
+      const res = await s.config.route.addMany(routes);
+      console.log(res)
+    }
   },
 
   /**

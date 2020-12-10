@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectIdColumn, ObjectID, OneToOne, JoinColumn } from "typeorm";
+import { Column, Entity, ObjectIdColumn, OneToOne, JoinColumn, ObjectID } from "typeorm";
 import { Translate } from "./translate"
 import { Project } from "./project"
 
@@ -35,7 +35,7 @@ export class RouterMeta {
 export class Router {
 
   @ObjectIdColumn()
-  id!: ObjectID;
+  _id!: ObjectID;
 
   /**
    * 路径
@@ -46,9 +46,8 @@ export class Router {
   /**
    * 父路由
    */
-  @OneToOne(() => ObjectID)
-  @JoinColumn()
-  parentId!: ObjectID;
+  @Column()
+  parentId!: string;
 
   /**
    * 路由渲染数据

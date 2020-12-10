@@ -1,4 +1,7 @@
-import { Translate } from "src/models/translate";
+/**
+ * 项目
+ */
+import { Project } from "src/models/project";
 import { ServiceContext } from ".";
 
 /**
@@ -9,16 +12,16 @@ export default (s: ServiceContext) => ({
   /**
    * template add
    */
-  add: async (obj: Translate) => {
+  add: async (obj: Project) => {
     // TODO 判断path唯一
-    return await s.config.translate.add(obj);
+    return await s.config.project.add(obj);
   },
 
   /**
    * template select
   */
   select: async (path?: string) => {
-    return await s.config.translate.select(path)
+    return await s.config.project.select(path)
   },
 
 })

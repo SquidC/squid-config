@@ -2,6 +2,7 @@ import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { Translate } from "src/models/translate";
 import { services } from ".";
+import { TranslateFirst, TranslateAdd } from "src/route/config/translate.type"
 
 export default (svr: services) => ({
   /**
@@ -9,8 +10,8 @@ export default (svr: services) => ({
   */
   add: async (c: Context, next: Next) => {
     // 获取参数 参数校验
-    const params: translate.add = c.request.body
-    const err = c.validate("translate.add", params)
+    const params: TranslateAdd = c.request.body
+    const err = c.validate("TranslateAdd", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }
@@ -26,8 +27,8 @@ export default (svr: services) => ({
   */
   first: async (c: Context, next: Next) => {
     // 获取参数
-    const params: translate.first = c.query
-    const err = c.validate("translate.first", params)
+    const params: TranslateFirst = c.query
+    const err = c.validate("TranslateFirst", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }

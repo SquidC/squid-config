@@ -4,16 +4,17 @@ import axios from "axios";
 const service = axios.create({
   timeout: 50000, // request timeout
   headers: { "Content-Type": "application/json;charset=UTF-8" },
+  // 抓包
+  // proxy: {
+  //   host: "127.0.0.1",
+  //   port: 8888,
+  // }
 });
 
 // request interceptor
 service.interceptors.request.use(
   (config) => {
     // Do something before request is sent
-    if (sessionStorage.getItem("token")) {
-      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-      config.url = config.url + "?token=" + sessionStorage.getItem("token");
-    }
     return config;
   },
   (error) => {

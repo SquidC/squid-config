@@ -13,7 +13,20 @@ const expansLog = async (ctx: koa.Context, next: koa.Next) => {
   const execTime = Date.now()
   const responseTime = execTime - startTime;
   httpLog.info(`${ctx.url}\t${responseTime}ms`);
-  system.info(`${chalk.bgBlueBright(ctx.method)}\t${chalk.yellow(ctx.url)}\t${chalk.green(`${responseTime}ms`)}`);
+
+  let statusFormat = (val: any) => {return val}
+  switch(ctx.status){
+    case 200: statusFormat = chalk.green; break;
+    case 404: statusFormat = chalk.grey; break;
+    case 500: statusFormat = chalk.red; break;
+  }
+
+  system.info(
+    `${chalk.bgBlueBright(ctx.method)}\t`+
+    `${statusFormat(ctx.status)}\t`+
+    `${chalk.yellow(ctx.url)}\t`+
+    `${chalk.green(`${responseTime}ms`)}`
+  );
 }
 
 export default expansLog

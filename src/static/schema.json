@@ -1,8 +1,33 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
-        "translate.add": {
-            "id": "translate.add",
+        "ProjectAdd": {
+            "id": "ProjectAdd",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "path"
+            ],
+            "type": "object"
+        },
+        "ProjectFirst": {
+            "id": "ProjectFirst",
+            "properties": {
+                "path": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TranslateAdd": {
+            "id": "TranslateAdd",
             "properties": {
                 "defaultValue": {
                     "type": "string"
@@ -17,8 +42,8 @@
             ],
             "type": "object"
         },
-        "translate.first": {
-            "id": "translate.first",
+        "TranslateFirst": {
+            "id": "TranslateFirst",
             "properties": {
                 "path": {
                     "type": "string"

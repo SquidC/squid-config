@@ -1,6 +1,6 @@
 [HTTP]
 host="localhost"
-port=80
+port=8000
 [MYSQL]
 database="config_center"
 host="localhost"

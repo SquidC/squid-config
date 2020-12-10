@@ -1,21 +1,25 @@
+import { TranslateAdd } from "src/api/translate";
 import { Translate } from "src/models/translate";
 import { ServiceContext } from ".";
 
 /**
- * template service
+ * translate service
  * @param s ServiceContext service上下文
  */
 export default (s: ServiceContext) => ({
   /**
-   * template add
+   * translate add
    */
-  add: async (obj: Translate) => {
+  add: async (params: TranslateAdd) => {
     // TODO 判断path唯一
+    const obj = new Translate()
+    obj.path = params.path
+    obj.defaultValue = params.defaultValue
     return await s.config.translate.add(obj);
   },
 
   /**
-   * template select
+   * translate select
   */
   select: async (path?: string) => {
     return await s.config.translate.select(path)

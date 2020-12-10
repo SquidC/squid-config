@@ -1,24 +1,22 @@
 import request from "lib/net/http/client"
-import { TranslateAdd } from "src/api/translate"
+import { RouteAdd } from "src/api/route"
+import mockRoutes from "./mock/route"
 
 const BASEURL = "http://localhost:8000/config"
 
-const add = (data: TranslateAdd) => {
+const add = (data: RouteAdd) => {
   // 发送请求
   return request({
-    url: BASEURL+"/translate/add",
+    url: BASEURL+"/route/add",
     method: "post",
     data: data
   })
 }
 
-describe("translate", () => {
+describe("route", () => {
   test("add", async () => {
     // 请求数据
-    const req = await add({
-      path: "route.test",
-      defaultValue: "test",
-    })
+    const req = await add(mockRoutes)
 
     expect(req.data.code).toBe(0)
   })

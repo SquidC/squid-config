@@ -46,8 +46,9 @@ export class Router {
   /**
    * 父路由
    */
-  // @Column()
-  // parentId!: ObjectID;
+  @OneToOne(() => ObjectID)
+  @JoinColumn()
+  parentId!: ObjectID;
 
   /**
    * 路由渲染数据

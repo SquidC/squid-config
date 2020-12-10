@@ -1,24 +1,28 @@
 /**
  * 项目
  */
+import { ProjectAdd } from "src/api/project";
 import { Project } from "src/models/project";
 import { ServiceContext } from ".";
 
 /**
- * template service
+ * project service
  * @param s ServiceContext service上下文
  */
 export default (s: ServiceContext) => ({
   /**
-   * template add
+   * project add
    */
-  add: async (obj: Project) => {
+  add: async (params: ProjectAdd) => {
+    const obj = new Project()
+    obj.path = params.path
+    obj.name = params.name
     // TODO 判断path唯一
     return await s.config.project.add(obj);
   },
 
   /**
-   * template select
+   * project select
   */
   select: async (path?: string) => {
     return await s.config.project.select(path)

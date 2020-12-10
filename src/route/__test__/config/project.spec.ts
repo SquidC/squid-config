@@ -1,5 +1,5 @@
 import request from "lib/net/http/client"
-import { ProjectAdd } from "src/route/config/project.type"
+import { ProjectAdd } from "src/api/project"
 
 const BASEURL = "http://localhost:8000/config"
 

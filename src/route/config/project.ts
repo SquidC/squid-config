@@ -1,8 +1,7 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
-import { Project } from "src/models/project";
 import { services } from ".";
-import {ProjectAdd, ProjectFirst} from "src/route/config/project.type"
+import { ProjectAdd, ProjectFirst } from "src/api/project"
 
 export default (svr: services) => ({
   /**
@@ -15,10 +14,7 @@ export default (svr: services) => ({
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }
-    const obj = new Project()
-    obj.path = params.path
-    obj.name = params.name
-    const res = await svr.config.project.add(obj)
+    const res = await svr.config.project.add(params)
     c.json(ecode.OK, res, next)
   },
 

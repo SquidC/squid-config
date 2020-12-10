@@ -4,6 +4,7 @@ import mongo = require("lib/database/mongo")
 import models = require("src/models")
 import translate from "./translate"
 import project from "./project"
+import route from "./route"
 /**
  * dao
  */
@@ -31,5 +32,6 @@ export async function New(c: conf.Config) {
   return {
     translate: translate(dao),
     project: project(dao),
+    route: route(dao),
   }
 }

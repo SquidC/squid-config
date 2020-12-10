@@ -1,6 +1,7 @@
 import configDao = require("src/dao/config")
 import translate from "./translate"
 import project from "./project"
+import route from "./route"
 import conf = require("src/conf")
 // import { NonPromise } from "lib/types";
 
@@ -27,5 +28,6 @@ export async function New(c: conf.Config) {
   return {
     translate: translate(service),
     project: project(service),
+    route: route(service),
   }
 }

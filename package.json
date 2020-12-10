@@ -7,7 +7,7 @@
     "cmd": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts",
     "dev": "cross-env NODE_PATH=. npx ts-node-dev --files ./cmd/index.ts run",
     "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate",
-    "gen": "typescript-json-schema ./src/route/**/*.type.ts * -o ./src/static/schema.json --required",
+    "gen": "typescript-json-schema ./src/api/**/*.type.ts * -o ./src/static/schema.json --required",
     "test": "cross-env NODE_PATH=. jest",
     "test-c": "cross-env NODE_PATH=. jest --coverage"
   },

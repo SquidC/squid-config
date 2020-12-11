@@ -1,6 +1,6 @@
-import { Column, Entity, ObjectIdColumn, OneToOne, JoinColumn, ObjectID } from "typeorm";
+import { Column, Entity, ObjectIdColumn, OneToOne, JoinColumn, Index } from "typeorm";
+import { ObjectId } from "mongodb"
 import { Translate } from "./translate"
-import { Project } from "./project"
 
 /**
  * 路由元素据
@@ -20,11 +20,6 @@ export class RouterMeta {
   @JoinColumn()
   name!: Translate;
 
-  /**
-   * 版本
-   */
-  @Column()
-  version!: string;
 }
 
 
@@ -32,10 +27,11 @@ export class RouterMeta {
  * 路由表
  */
 @Entity()
+@Index(["path", "version"], { unique: true })
 export class Router {
 
   @ObjectIdColumn()
-  _id!: ObjectID;
+  _id!: ObjectId;
 
   /**
    * 路径
@@ -58,8 +54,12 @@ export class Router {
   /**
    * 关联项目
    */
-  @OneToOne(() => Project)
-  @JoinColumn()
-  project!: Project;
+  @Column()
+  projectId!: string;
 
+  /**
+   * 路由结构版本
+   */
+  @Column()
+  version!: string;
 }

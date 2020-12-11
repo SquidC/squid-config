@@ -10,6 +10,7 @@ export interface route {
  */
 export interface RouteAdd {
   project: string;
+  version: string;
   route: route[];
 }
 
@@ -17,5 +18,6 @@ export interface RouteAdd {
  * @id RouteFirst
  */
 export interface RouteFirst {
-  path?: string
+  projectId?: string;
+  version?: string;
 }

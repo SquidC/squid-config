@@ -53,6 +53,7 @@ export async function New(
       password: c.password,
       entities: entities,
       synchronize: synchronize,
+      logging: true,
       useUnifiedTopology: true
     });
     system.info(chalk.green("load mongodb"))

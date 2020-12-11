@@ -17,7 +17,6 @@ export default (s: ServiceContext) => ({
     const obj = new Project()
     obj.path = params.path
     obj.name = params.name
-    // TODO 判断path唯一
     return await s.config.project.add(obj);
   },
 

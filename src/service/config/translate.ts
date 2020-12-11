@@ -11,7 +11,6 @@ export default (s: ServiceContext) => ({
    * translate add
    */
   add: async (params: TranslateAdd) => {
-    // TODO 判断path唯一
     const obj = new Translate()
     obj.path = params.path
     obj.defaultValue = params.defaultValue

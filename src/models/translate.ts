@@ -1,18 +1,20 @@
 /**
  * 翻译
  */
-import { ObjectID, Column, Entity, ObjectIdColumn } from "typeorm";
+import { ObjectId } from "mongodb"
+import { Column, Entity, ObjectIdColumn, Index } from "typeorm";
 
 @Entity()
 export class Translate {
 
   @ObjectIdColumn()
-  _id!: ObjectID;
+  _id!: ObjectId;
 
   /**
    * i18n索引路径
    */
   @Column()
+  @Index({ unique: true })
   path!: string;
 
   /**

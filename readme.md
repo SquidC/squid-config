@@ -32,6 +32,15 @@ cd /build/shell
 ./init.sh
 ```
 
+> 配置vscode-jest
+
+```json
+{
+  "jestrunner.jestCommand": "cross-env NODE_PATH=. jest",
+  "jestrunner.configPath": "./jest.config.js",
+}
+```
+
 ## future
 
 -   [x] [全局配置中心](./docs/config.md)

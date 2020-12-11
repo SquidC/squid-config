@@ -1,4 +1,5 @@
-import { Column, Entity, ObjectIdColumn, ObjectID } from "typeorm";
+import { Column, Entity, ObjectIdColumn, Index } from "typeorm";
+import { ObjectId } from "mongodb"
 
 /**
  * 项目表
@@ -7,7 +8,7 @@ import { Column, Entity, ObjectIdColumn, ObjectID } from "typeorm";
 export class Project {
 
   @ObjectIdColumn()
-  _id!: ObjectID;
+  _id!: ObjectId;
 
   /**
    * 名称
@@ -19,5 +20,6 @@ export class Project {
    * 路径
    */
   @Column()
+  @Index({ unique: true })
   path!: string;
 }

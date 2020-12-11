@@ -17,8 +17,8 @@ export default (dao: DaoContext) => ({
   /**
    * Router select
    */
-  select: async (path?: string) => {
-    return await dao.mongo.manager.getMongoRepository(Router).findOne({path})
+  select: async (projectId?: string, version?: string) => {
+    return await dao.mongo.manager.getMongoRepository(Router).find({projectId, version})
   }
 })
 

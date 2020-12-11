@@ -1,3 +1,4 @@
+import { Page } from "./page";
 
 export interface route {
   path: string;
@@ -15,9 +16,9 @@ export interface RouteAdd {
 }
 
 /**
- * @id RouteFirst
+ * @id RouteSelete
  */
-export interface RouteFirst {
+export interface RouteSelete extends Page {
   projectId?: string;
   version?: string;
 }

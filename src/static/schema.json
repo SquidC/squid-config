@@ -2,6 +2,18 @@
     "$id": "api",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "Page": {
+            "id": "Page",
+            "properties": {
+                "page": {
+                    "type": "number"
+                },
+                "size": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "ProjectAdd": {
             "id": "ProjectAdd",
             "properties": {
@@ -38,18 +50,31 @@
                         "$ref": "api#/definitions/route"
                     },
                     "type": "array"
+                },
+                "version": {
+                    "type": "string"
                 }
             },
             "required": [
                 "project",
-                "route"
+                "route",
+                "version"
             ],
             "type": "object"
         },
-        "RouteFirst": {
-            "id": "RouteFirst",
+        "RouteSelete": {
+            "id": "RouteSelete",
             "properties": {
-                "path": {
+                "page": {
+                    "type": "number"
+                },
+                "projectId": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "number"
+                },
+                "version": {
                     "type": "string"
                 }
             },

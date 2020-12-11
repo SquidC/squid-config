@@ -1,5 +1,5 @@
 import request from "lib/net/http/client"
-import { RouteAdd, RouteFirst } from "src/api/route"
+import { RouteAdd, RouteSelete } from "src/api/route"
 import mock from "./mock/route"
 
 const BASEURL = "http://localhost:8000/config"
@@ -13,7 +13,7 @@ const add = (data: RouteAdd) => {
   })
 }
 
-const select = (data: RouteFirst) => {
+const select = (data: RouteSelete) => {
   // 发送请求
   return request({
     url: BASEURL+"/route/select",

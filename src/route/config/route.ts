@@ -1,6 +1,7 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
-import { RouteAdd, RouteFirst } from "src/api/route"
+import { formatPage } from "src/api/page"
+import { RouteAdd, RouteSelete } from "src/api/route"
 import { services } from "."
 
 export default (svr: services) => ({
@@ -24,13 +25,14 @@ export default (svr: services) => ({
   */
   select: async (c: Context, next: Next) => {
     // 获取参数
-    const params: RouteFirst = c.query
-    const err = c.validate("RouteFirst", params)
+    const params: RouteSelete = c.query
+    formatPage(params)
+    const err = c.validate("RouteSelete", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
+      return
     }
-    console.log(params)
-    const res = await svr.config.route.select(params.projectId, params.version)
+    const res = await svr.config.route.select(params)
     // 参数校验
     c.json(ecode.OK, res, next)
   }

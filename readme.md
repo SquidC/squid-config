@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# koa-template-app
+# config-center
 
 ## example
 

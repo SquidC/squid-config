@@ -41,6 +41,7 @@ export async function New(c: conf.Config, router: Router) {
   router.post("/project/dels", projectRoute.dels)
   router.post("/project/edit", projectRoute.edit)
   router.get("/project/select", projectRoute.select)
+  router.get("/project/options", projectRoute.options)
 
   router.post("/route/add", routeRoute.add)
   router.post("/route/dels", routeRoute.dels)

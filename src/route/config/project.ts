@@ -61,5 +61,13 @@ export default (svr: services) => ({
     const res = await svr.config.project.select(params)
     // 参数校验
     c.json(ecode.OK, res, next)
+  },
+
+  /**
+   * project options
+   */
+  options: async (c: Context, next: Next) => {
+    const res = await svr.config.project.options()
+    c.json(ecode.OK, res, next)
   }
 })

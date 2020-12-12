@@ -57,6 +57,15 @@ export default (dao: DaoContext) => ({
   },
 
   /**
+   * Project options
+   */
+  options: async () => {
+    return await dao.mongo.getMongoRepository(Project).aggregate([
+      {$project: { label: "$_id", value: "$name", _id: 0 }}
+    ]).toArray()
+  },
+
+  /**
    * Project first
    */
   first: async (_id: string) => {

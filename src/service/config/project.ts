@@ -45,5 +45,12 @@ export default (s: ServiceContext) => ({
     return await s.config.project.select(params, params.path)
   },
 
+  /**
+   * project options
+   */
+  options: async () => {
+    return await s.config.project.options()
+  }
+
 })
 

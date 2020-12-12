@@ -41,6 +41,14 @@ const select = (data: ProjectSelect) => {
   })
 }
 
+const opts = () => {
+  // 发送请求
+  return request({
+    url: BASEURL+"/project/options",
+    method: "get",
+  })
+}
+
 describe("project", () => {
   const ids: string[] = [];
 
@@ -77,6 +85,12 @@ describe("project", () => {
   test("dels", async () => {
     // 请求数据
     const req = await dels({ids})
+    expect(req.data.code).toBe(0)
+  })
+
+  test("opts", async () => {
+    // 请求数据
+    const req = await opts()
     expect(req.data.code).toBe(0)
   })
 })

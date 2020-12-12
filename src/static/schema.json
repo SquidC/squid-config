@@ -97,6 +97,17 @@
             ],
             "type": "object"
         },
+        "RouteDels": {
+            "properties": {
+                "version": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "version"
+            ],
+            "type": "object"
+        },
         "RouteEdit": {
             "properties": {
                 "id": {

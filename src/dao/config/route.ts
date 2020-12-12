@@ -19,8 +19,14 @@ export default (dao: DaoContext) => ({
   /**
     * Router dels
   */
-  dels: async (_ids: string[]) => {
-    const ids = _ids.map(el => new ObjectID(el) as any)
+  dels: async (version: string) => {
+    const routes = await dao.mongo.getMongoRepository(Router).find({
+      select: ["_id"],
+      where: {
+        version
+      }
+    })
+    const ids = routes.map(el => new ObjectID(el._id) as any)
     return await dao.mongo.manager.getMongoRepository(Router).deleteMany({
       _id: {
         $in: ids

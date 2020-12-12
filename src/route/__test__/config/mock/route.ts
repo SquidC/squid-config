@@ -37,7 +37,7 @@ export default {
       },
     ],
     version: "1.0.0",
-    project: "5fd3277d8e928aa1604c282c",
+    project: "5fd456a5bd5b0fa0d09a53f9",
   },{
     route:[
       {
@@ -76,10 +76,13 @@ export default {
       },
     ],
     version: "1.0.1",
-    project: "5fd3277d8e928aa1604c282c",
+    project: "5fd456a5bd5b0fa0d09a53f9",
   }],
   select: [{
-    projectId: "5fd3277d8e928aa1604c282c",
+    projectId: "5fd456a5bd5b0fa0d09a53f9",
+    version: "1.0.1"
+  }],
+  dels: {
     version: "1.0.0"
-  }]
+  }
 }

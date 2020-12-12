@@ -52,3 +52,4 @@ cd /build/shell
 
 [typescript-json-schema](https://github.com/YousefED/typescript-json-schema/blob/master/api.md)
 [typeorm](https://gitee.com/mirrors/TypeORM)
+[typeorm-mongo](https://github.com/typeorm/typeorm/blob/master/docs/mongodb.md)

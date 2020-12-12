@@ -1,4 +1,4 @@
-import { Page } from "./base";
+import { Dels, Page } from "./base";
 
 export interface route {
   path: string;
@@ -19,4 +19,8 @@ export interface RouteSelete extends Page {
 
 export interface RouteEdit extends RouteAdd {
   id: string;
+}
+
+export interface RouteDels {
+  version: string; // 只能一个版本一个版本的删
 }

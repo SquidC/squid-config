@@ -3,8 +3,7 @@
  */
 import { Tree2Table } from "lib/utils/tree";
 import { ObjectId } from "mongodb";
-import { Dels } from "src/api/base";
-import { RouteAdd, RouteSelete } from "src/api/route";
+import { RouteAdd, RouteDels, RouteSelete } from "src/api/route";
 import { Router } from "src/models/route";
 import { ServiceContext } from ".";
 
@@ -41,8 +40,8 @@ export default (s: ServiceContext) => ({
   /**
     * route dels
   */
-  dels: async (params: Dels)=> {
-    return await s.config.route.dels(params.ids)
+  dels: async (params: RouteDels)=> {
+    return await s.config.route.dels(params.version)
   },
 
   /**

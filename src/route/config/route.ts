@@ -1,7 +1,7 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
-import { RouteAdd, RouteSelete } from "src/api/route"
-import { Dels, formatPage } from "src/api/base"
+import { RouteAdd, RouteDels, RouteSelete } from "src/api/route"
+import { formatPage } from "src/api/base"
 import { services } from "."
 
 export default (svr: services) => ({
@@ -25,8 +25,8 @@ export default (svr: services) => ({
     * Router dels
   */
   dels: async (c: Context, next: Next) => {
-    const params: Dels = c.request.body
-    const err = c.validate("Dels", params)
+    const params: RouteDels = c.request.body
+    const err = c.validate("RouteDels", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
       return

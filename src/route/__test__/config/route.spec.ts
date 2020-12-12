@@ -1,6 +1,5 @@
 import request from "lib/net/http/client"
-import { Dels } from "src/api/base"
-import { RouteAdd, RouteSelete } from "src/api/route"
+import { RouteAdd, RouteDels, RouteSelete } from "src/api/route"
 import mockData from "./mock/route"
 
 const BASEURL = "http://localhost:8000/config"
@@ -15,7 +14,7 @@ const add = (data: RouteAdd) => {
 }
 
 
-const dels = (data: Dels) => {
+const dels = (data: RouteDels) => {
   // 发送请求
   return request({
     url: BASEURL+"/route/dels",
@@ -61,8 +60,7 @@ describe("route", () => {
 
   test("dels", async () => {
     // 请求数据
-    console.log(ids)
-    const req = await dels({ids})
+    const req = await dels(mockData.dels)
     expect(req.data.code).toBe(0)
   })
 })

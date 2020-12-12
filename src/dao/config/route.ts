@@ -1,4 +1,4 @@
-import { Page } from "src/api/page";
+import { Page } from "src/api/base";
 import { Router } from "src/models/route";
 import { DaoContext } from ".";
 
@@ -16,16 +16,9 @@ export default (dao: DaoContext) => ({
   },
 
   /**
-    * project dels
+    * Router dels
   */
   dels: ()=> {
-    //
-  },
-
-  /**
-    * project edit
-  */
-  edit: ()=> {
     //
   },
 
@@ -33,9 +26,11 @@ export default (dao: DaoContext) => ({
    * Router select
    */
   select: async (page: Page, projectId?: string, version?: string) => {
+    const query = {}
+    projectId && (query["projectId"] = projectId)
+    version && (query["version"] = version)
     const res = await dao.mongo.manager.getMongoRepository(Router).find({
-      projectId,
-      version,
+      ...query,
       skip: page.page,
       take: page.size
     })

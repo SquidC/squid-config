@@ -2,8 +2,21 @@
     "$id": "api",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "Dels": {
+            "properties": {
+                "ids": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "ids"
+            ],
+            "type": "object"
+        },
         "Page": {
-            "id": "Page",
             "properties": {
                 "page": {
                     "type": "number"
@@ -15,7 +28,6 @@
             "type": "object"
         },
         "ProjectAdd": {
-            "id": "ProjectAdd",
             "properties": {
                 "name": {
                     "type": "string"
@@ -30,8 +42,26 @@
             ],
             "type": "object"
         },
+        "ProjectEdit": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "path"
+            ],
+            "type": "object"
+        },
         "ProjectSelect": {
-            "id": "ProjectSelect",
             "properties": {
                 "page": {
                     "type": "number"
@@ -46,7 +76,6 @@
             "type": "object"
         },
         "RouteAdd": {
-            "id": "RouteAdd",
             "properties": {
                 "project": {
                     "type": "string"
@@ -68,8 +97,33 @@
             ],
             "type": "object"
         },
+        "RouteEdit": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "project": {
+                    "type": "string"
+                },
+                "route": {
+                    "items": {
+                        "$ref": "api#/definitions/route"
+                    },
+                    "type": "array"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "project",
+                "route",
+                "version"
+            ],
+            "type": "object"
+        },
         "RouteSelete": {
-            "id": "RouteSelete",
             "properties": {
                 "page": {
                     "type": "number"
@@ -87,7 +141,6 @@
             "type": "object"
         },
         "TranslateAdd": {
-            "id": "TranslateAdd",
             "properties": {
                 "defaultValue": {
                     "type": "string"
@@ -102,8 +155,26 @@
             ],
             "type": "object"
         },
+        "TranslateEdit": {
+            "properties": {
+                "defaultValue": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "defaultValue",
+                "id",
+                "path"
+            ],
+            "type": "object"
+        },
         "TranslateSelect": {
-            "id": "TranslateSelect",
             "properties": {
                 "page": {
                     "type": "number"

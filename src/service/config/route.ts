@@ -45,13 +45,6 @@ export default (s: ServiceContext) => ({
   },
 
   /**
-    * route edit
-  */
-  edit: ()=> {
-    //
-  },
-
-  /**
    * route select
   */
   select: async (params: RouteSelete) => {

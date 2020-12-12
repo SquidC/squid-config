@@ -1,4 +1,4 @@
-import { Page } from "src/api/page";
+import { Page } from "src/api/base";
 import { Translate } from "src/models/translate";
 import { DaoContext } from ".";
 
@@ -32,8 +32,10 @@ export default (dao: DaoContext) => ({
    * translate select
    */
   select: async (page: Page, path?: string) => {
+    const query = {}
+    path && (query["path"] = path)
     const res = await dao.mongo.manager.getMongoRepository(Translate).find({
-      path,
+      ...query,
       skip: page.page,
       take: page.size
     })

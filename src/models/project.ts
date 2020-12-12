@@ -21,5 +21,5 @@ export class Project {
    */
   @Column()
   @Index({ unique: true })
-  path!: string;
+  path!: string | null;
 }

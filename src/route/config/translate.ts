@@ -2,7 +2,7 @@ import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { services } from ".";
 import { TranslateSelect, TranslateAdd } from "src/api/translate"
-import { formatPage } from "src/api/page";
+import { formatPage } from "src/api/base";
 
 export default (svr: services) => ({
   /**

@@ -9,5 +9,9 @@ export default {
   }],
   select: [{
     path: "/jb"
-  }]
+  }],
+  edit: {
+    path: "/jb2",
+    name: "jb2项目",
+  },
 }

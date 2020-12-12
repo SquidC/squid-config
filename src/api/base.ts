@@ -1,10 +1,12 @@
-/**
- * @id Page
- */
 export interface Page {
   page?: number;
   size?: number;
 }
+
+export interface Dels {
+  ids: string[];
+}
+
 
 /**
  * 格式化返回page

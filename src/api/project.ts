@@ -1,18 +1,14 @@
-import { Page } from "./page";
+import { Page } from "./base";
 
-/**
- * @id ProjectAdd
- */
 export interface ProjectAdd {
   name: string;
   path: string;
 }
 
-/**
- * @id ProjectSelect
- */
 export interface  ProjectSelect extends Page {
   path?: string
 }
 
-
+export interface ProjectEdit extends ProjectAdd {
+  id: string;
+}

@@ -4,7 +4,7 @@ import core from "./middleware/core"
 import authenticate from "./middleware/authenticate"
 import log from "./middleware/log"
 import { system } from "lib/log"
-import chalk = require("chalk")
+import chalk from "chalk";
 import { defineContextFunction } from "./context"
 import { Router, defineRouterFunction } from "./route"
 import { Server, createServer as httpCreateServer } from "http"

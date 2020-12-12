@@ -1,7 +1,7 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
-import { formatPage } from "src/api/page"
 import { RouteAdd, RouteSelete } from "src/api/route"
+import { formatPage } from "src/api/base"
 import { services } from "."
 
 export default (svr: services) => ({
@@ -24,13 +24,6 @@ export default (svr: services) => ({
     * Router dels
   */
   dels: ()=> {
-    //
-  },
-
-  /**
-  * Router edit
-  */
-  edit: ()=> {
     //
   },
 

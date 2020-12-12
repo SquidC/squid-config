@@ -1,7 +1,8 @@
 /**
  * 项目
  */
-import { ProjectAdd, ProjectSelect } from "src/api/project";
+import { ProjectAdd, ProjectEdit, ProjectSelect } from "src/api/project";
+import { Dels } from "src/api/base";
 import { Project } from "src/models/project";
 import { ServiceContext } from ".";
 
@@ -23,15 +24,18 @@ export default (s: ServiceContext) => ({
   /**
     * project dels
   */
-  dels: ()=> {
-    //
+  dels: async (params: Dels)=> {
+    return await s.config.project.dels(params.ids)
   },
 
   /**
     * project edit
   */
-  edit: ()=> {
-    //
+  edit: async (params: ProjectEdit)=> {
+    const obj = new Project()
+    obj.path = params.path
+    obj.name = params.name
+    return await s.config.project.edit(params.id, obj)
   },
 
   /**

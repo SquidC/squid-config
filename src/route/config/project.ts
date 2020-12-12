@@ -1,15 +1,14 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { services } from ".";
-import { ProjectAdd, ProjectSelect } from "src/api/project"
-import { formatPage } from "src/api/page";
+import { ProjectAdd, ProjectEdit, ProjectSelect } from "src/api/project"
+import { Dels, formatPage } from "src/api/base";
 
 export default (svr: services) => ({
   /**
     * project add
   */
   add: async (c: Context, next: Next) => {
-    // 获取参数 参数校验
     const params: ProjectAdd = c.request.body
     const err = c.validate("ProjectAdd", params)
     if(err) {
@@ -23,15 +22,29 @@ export default (svr: services) => ({
   /**
     * project dels
   */
-  dels: ()=> {
-    //
+  dels: async (c: Context, next: Next) => {
+    const params: Dels = c.request.body
+    const err = c.validate("Dels", params)
+    if(err) {
+      c.json(ecode.ParamsErr, null, next)
+      return
+    }
+    const res = await svr.config.project.dels(params)
+    c.json(ecode.OK, res, next)
   },
 
   /**
   * project edit
   */
-  edit: ()=> {
-    //
+  edit: async (c: Context, next: Next)=> {
+    const params: ProjectEdit = c.request.body
+    const err = c.validate("ProjectEdit", params)
+    if(err) {
+      c.json(ecode.ParamsErr, null, next)
+      return
+    }
+    const res = await svr.config.project.edit(params)
+    c.json(ecode.OK, res, next)
   },
 
   /**

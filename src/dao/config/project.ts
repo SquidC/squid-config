@@ -1,7 +1,7 @@
 import { Project } from "src/models/project";
 import { ObjectID } from "mongodb";
 import { DaoContext } from ".";
-import { Page } from "src/api/page";
+import { Page } from "src/api/base";
 
 /**
  * Project dao
@@ -18,23 +18,34 @@ export default (dao: DaoContext) => ({
   /**
     * project dels
   */
-  dels: ()=> {
-    //
+  dels: async (_ids: string[]) => {
+    const ids = _ids.map(el => new ObjectID(el) as any)
+    return await dao.mongo.manager.getMongoRepository(Project).deleteMany({
+      _id: {
+        $in: ids
+      }
+    })
   },
 
   /**
     * project edit
   */
-  edit: ()=> {
-    //
+  edit: async (_id: string, obj: Project)=> {
+    return await dao.mongo.getMongoRepository(Project)
+      .findOneAndUpdate(
+        {_id: new ObjectID(_id) as any},
+        {$set: obj}
+      )
   },
 
   /**
    * Project select
    */
-  select: async (page:Page, path?: string) => {
+  select: async (page: Page, path?: string) => {
+    const query = {}
+    path && (query["path"] = path)
     const res = await dao.mongo.manager.getMongoRepository(Project).find({
-      path,
+      ...query,
       skip: page.page,
       take: page.size
     })

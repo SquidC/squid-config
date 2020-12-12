@@ -53,8 +53,8 @@ export default (svr: services) => ({
   select: async (c: Context, next: Next) => {
     // 获取参数
     const params: ProjectSelect = c.query
-    const err = c.validate("ProjectSelect", params)
     formatPage(params)
+    const err = c.validate("ProjectSelect", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }

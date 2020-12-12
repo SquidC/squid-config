@@ -1,7 +1,7 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { RouteAdd, RouteSelete } from "src/api/route"
-import { formatPage } from "src/api/base"
+import { Dels, formatPage } from "src/api/base"
 import { services } from "."
 
 export default (svr: services) => ({
@@ -14,6 +14,7 @@ export default (svr: services) => ({
     const err = c.validate("RouteAdd", params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
+      return
     }
     // obj
     const res = await svr.config.route.add(params)
@@ -23,8 +24,15 @@ export default (svr: services) => ({
   /**
     * Router dels
   */
-  dels: ()=> {
-    //
+  dels: async (c: Context, next: Next) => {
+    const params: Dels = c.request.body
+    const err = c.validate("Dels", params)
+    if(err) {
+      c.json(ecode.ParamsErr, null, next)
+      return
+    }
+    const res = await svr.config.route.dels(params)
+    c.json(ecode.OK, res, next)
   },
 
   /**

@@ -8,5 +8,10 @@ export default {
   }],
   select: [{
     path: "route.test"
-  }]
+  }],
+  edit: {
+    path: "route.test_edit",
+    defaultValue: "test_edit",
+  }
+
 }

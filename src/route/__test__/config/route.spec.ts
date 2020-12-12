@@ -1,4 +1,5 @@
 import request from "lib/net/http/client"
+import { Dels } from "src/api/base"
 import { RouteAdd, RouteSelete } from "src/api/route"
 import mockData from "./mock/route"
 
@@ -8,6 +9,16 @@ const add = (data: RouteAdd) => {
   // 发送请求
   return request({
     url: BASEURL+"/route/add",
+    method: "post",
+    data: data
+  })
+}
+
+
+const dels = (data: Dels) => {
+  // 发送请求
+  return request({
+    url: BASEURL+"/route/dels",
     method: "post",
     data: data
   })
@@ -24,6 +35,14 @@ const select = (data: RouteSelete) => {
 
 describe("route", () => {
 
+  const ids: string[] = [];
+
+  beforeAll(async () => {
+    const req = await select({
+      version: "1.0.0"
+    })
+    ids.push(...req.data.data.list.map((el: any) => el._id))
+  })
   test("add", async () => {
     // 请求数据
     mockData.add.forEach(async el => {
@@ -38,5 +57,12 @@ describe("route", () => {
       const req = await select(el)
       expect(req.data.data.list.length).toBeGreaterThanOrEqual(1)
     })
+  })
+
+  test("dels", async () => {
+    // 请求数据
+    console.log(ids)
+    const req = await dels({ids})
+    expect(req.data.code).toBe(0)
   })
 })

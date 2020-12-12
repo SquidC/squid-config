@@ -1,8 +1,9 @@
 /**
  * 路由
  */
-import { Table2Tree, Tree2Table } from "lib/utils/tree";
+import { Tree2Table } from "lib/utils/tree";
 import { ObjectId } from "mongodb";
+import { Dels } from "src/api/base";
 import { RouteAdd, RouteSelete } from "src/api/route";
 import { Router } from "src/models/route";
 import { ServiceContext } from ".";
@@ -40,8 +41,8 @@ export default (s: ServiceContext) => ({
   /**
     * route dels
   */
-  dels: ()=> {
-    //
+  dels: async (params: Dels)=> {
+    return await s.config.route.dels(params.ids)
   },
 
   /**
@@ -50,15 +51,15 @@ export default (s: ServiceContext) => ({
   select: async (params: RouteSelete) => {
     const { page, size, projectId, version } = params;
     const routes = await s.config.route.select({page, size}, projectId, version)
-    const routesKV: Record<string, any> = {}
-    routes.list.forEach(route => {
-      routesKV[route._id.toHexString()] = {
-        children: [],
-        ...route
-      }
-    })
-    Table2Tree(routesKV)
-    routes.list = Object.values(routesKV)
+    // const routesKV: Record<string, any> = {}
+    // routes.list.forEach(route => {
+    //   routesKV[route._id.toHexString()] = {
+    //     children: [],
+    //     ...route
+    //   }
+    // })
+    // Table2Tree(routesKV)
+    // routes.list = Object.values(routesKV)
     return routes
   },
 

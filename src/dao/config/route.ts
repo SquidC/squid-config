@@ -1,3 +1,4 @@
+import { ObjectID } from "mongodb";
 import { Page } from "src/api/base";
 import { Router } from "src/models/route";
 import { DaoContext } from ".";
@@ -18,8 +19,13 @@ export default (dao: DaoContext) => ({
   /**
     * Router dels
   */
-  dels: ()=> {
-    //
+  dels: async (_ids: string[]) => {
+    const ids = _ids.map(el => new ObjectID(el) as any)
+    return await dao.mongo.manager.getMongoRepository(Router).deleteMany({
+      _id: {
+        $in: ids
+      }
+    })
   },
 
   /**

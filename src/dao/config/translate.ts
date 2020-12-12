@@ -1,3 +1,4 @@
+import { ObjectID } from "mongodb";
 import { Page } from "src/api/base";
 import { Translate } from "src/models/translate";
 import { DaoContext } from ".";
@@ -15,17 +16,26 @@ export default (dao: DaoContext) => ({
   },
 
   /**
-    * project dels
+    * translate dels
   */
-  dels: ()=> {
-    //
+  dels: async (_ids: string[]) => {
+    const ids = _ids.map(el => new ObjectID(el) as any)
+    return await dao.mongo.manager.getMongoRepository(Translate).deleteMany({
+      _id: {
+        $in: ids
+      }
+    })
   },
 
   /**
-    * project edit
+    * translate edit
   */
-  edit: ()=> {
-    //
+  edit: async (_id: string, obj: Translate)=> {
+    return await dao.mongo.getMongoRepository(Translate)
+      .findOneAndUpdate(
+        {_id: new ObjectID(_id) as any},
+        {$set: obj}
+      )
   },
 
   /**

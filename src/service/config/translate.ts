@@ -1,4 +1,5 @@
-import { TranslateAdd, TranslateSelect } from "src/api/translate";
+import { Dels } from "src/api/base";
+import { TranslateAdd, TranslateEdit, TranslateSelect } from "src/api/translate";
 import { Translate } from "src/models/translate";
 import { ServiceContext } from ".";
 
@@ -20,15 +21,18 @@ export default (s: ServiceContext) => ({
   /**
     * translate dels
   */
-  dels: ()=> {
-    //
+  dels: async (params: Dels)=> {
+    return await s.config.translate.dels(params.ids)
   },
 
   /**
     * translate edit
   */
-  edit: ()=> {
-    //
+  edit: async (params: TranslateEdit)=> {
+    const obj = new Translate()
+    obj.path = params.path
+    obj.defaultValue = params.defaultValue
+    return await s.config.translate.edit(params.id, obj)
   },
 
   /**

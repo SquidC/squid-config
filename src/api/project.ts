@@ -1,3 +1,5 @@
+import { Page } from "./page";
+
 /**
  * @id ProjectAdd
  */
@@ -7,9 +9,9 @@ export interface ProjectAdd {
 }
 
 /**
- * @id ProjectFirst
+ * @id ProjectSelect
  */
-export interface  ProjectFirst {
+export interface  ProjectSelect extends Page {
   path?: string
 }
 

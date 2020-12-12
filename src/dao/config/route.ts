@@ -20,13 +20,15 @@ export default (dao: DaoContext) => ({
    */
   select: async (page: Page, projectId?: string, version?: string) => {
     const res = await dao.mongo.manager.getMongoRepository(Router).find({
-      projectId, version,
+      projectId,
+      version,
       skip: page.page,
       take: page.size
     })
+    const count = await dao.mongo.manager.getMongoRepository(Router).count()
     return {
       list: res,
-      total: await dao.mongo.manager.getMongoRepository(Router).count(),
+      total: count
     }
   }
 })

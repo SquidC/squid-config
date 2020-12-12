@@ -1,5 +1,6 @@
 import request from "lib/net/http/client"
-import { TranslateAdd } from "src/api/translate"
+import { TranslateAdd, TranslateSelect } from "src/api/translate"
+import mockData from "./mock/translate"
 
 const BASEURL = "http://localhost:8000/config"
 
@@ -12,14 +13,29 @@ const add = (data: TranslateAdd) => {
   })
 }
 
+const select = (data: TranslateSelect) => {
+  // 发送请求
+  return request({
+    url: BASEURL+"/translate/select",
+    method: "get",
+    params: data
+  })
+}
+
 describe("translate", () => {
   test("add", async () => {
     // 请求数据
-    const req = await add({
-      path: "route.test",
-      defaultValue: "test",
+    mockData.add.forEach(async el => {
+      const req = await add(el)
+      expect(req.data.code).toBe(0)
     })
+  })
 
-    expect(req.data.code).toBe(0)
+  test("select", async () => {
+    // 请求数据
+    mockData.select.forEach(async el => {
+      const req = await select(el)
+      expect(req.data.data.list.length).toBeGreaterThanOrEqual(1)
+    })
   })
 })

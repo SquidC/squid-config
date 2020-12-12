@@ -1,4 +1,13 @@
 export default {
-  path: "/jb",
-  name: "鸡巴项目",
+  add:[{
+    path: "/jb",
+    name: "jb项目",
+  },
+  {
+    path: "/cjb",
+    name: "cjb项目",
+  }],
+  select: [{
+    path: "/jb"
+  }]
 }

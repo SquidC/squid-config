@@ -1,4 +1,4 @@
-import { TranslateAdd } from "src/api/translate";
+import { TranslateAdd, TranslateSelect } from "src/api/translate";
 import { Translate } from "src/models/translate";
 import { ServiceContext } from ".";
 
@@ -20,8 +20,8 @@ export default (s: ServiceContext) => ({
   /**
    * translate select
   */
-  select: async (path?: string) => {
-    return await s.config.translate.select(path)
+  select: async (params: TranslateSelect) => {
+    return await s.config.translate.select(params, params.path)
   },
 
 })

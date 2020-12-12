@@ -1,7 +1,7 @@
 /**
  * 项目
  */
-import { ProjectAdd } from "src/api/project";
+import { ProjectAdd, ProjectSelect } from "src/api/project";
 import { Project } from "src/models/project";
 import { ServiceContext } from ".";
 
@@ -23,8 +23,8 @@ export default (s: ServiceContext) => ({
   /**
    * project select
   */
-  select: async (path?: string) => {
-    return await s.config.project.select(path)
+  select: async (params: ProjectSelect) => {
+    return await s.config.project.select(params, params.path)
   },
 
 })

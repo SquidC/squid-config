@@ -1,6 +1,7 @@
 import { Project } from "src/models/project";
 import { ObjectID } from "mongodb";
 import { DaoContext } from ".";
+import { Page } from "src/api/page";
 
 /**
  * Project dao
@@ -17,8 +18,17 @@ export default (dao: DaoContext) => ({
   /**
    * Project select
    */
-  select: async (path?: string) => {
-    return await dao.mongo.manager.getMongoRepository(Project).find({path})
+  select: async (page:Page, path?: string) => {
+    const res = await dao.mongo.manager.getMongoRepository(Project).find({
+      path,
+      skip: page.page,
+      take: page.size
+    })
+    const count = await dao.mongo.manager.getMongoRepository(Project).count()
+    return {
+      list: res,
+      total: count
+    }
   },
 
   /**

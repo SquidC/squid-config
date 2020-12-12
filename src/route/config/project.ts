@@ -1,7 +1,8 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { services } from ".";
-import { ProjectAdd, ProjectFirst } from "src/api/project"
+import { ProjectAdd, ProjectSelect } from "src/api/project"
+import { formatPage } from "src/api/page";
 
 export default (svr: services) => ({
   /**
@@ -20,16 +21,17 @@ export default (svr: services) => ({
   },
 
   /**
-    * project first
+    * project select
   */
-  first: async (c: Context, next: Next) => {
+  select: async (c: Context, next: Next) => {
     // 获取参数
-    const params: ProjectFirst = c.query
-    const err = c.validate("ProjectFirst", params)
+    const params: ProjectSelect = c.query
+    const err = c.validate("ProjectSelect", params)
+    formatPage(params)
     if(err) {
       c.json(ecode.ParamsErr, null, next)
     }
-    const res = await svr.config.project.select(params.path)
+    const res = await svr.config.project.select(params)
     // 参数校验
     c.json(ecode.OK, res, next)
   }

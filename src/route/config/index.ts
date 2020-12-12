@@ -33,10 +33,10 @@ export async function New(c: conf.Config, router: Router) {
   router.prefix("/config")
 
   router.post("/translate/add", translateRoute.add)
-  router.get("/translate/first", translateRoute.first)
+  router.get("/translate/select", translateRoute.select)
 
   router.post("/project/add", projectRoute.add)
-  router.get("/project/first", projectRoute.first)
+  router.get("/project/select", projectRoute.select)
 
   router.post("/route/add", routeRoute.add)
   router.get("/route/select", routeRoute.select)

@@ -30,11 +30,17 @@
             ],
             "type": "object"
         },
-        "ProjectFirst": {
-            "id": "ProjectFirst",
+        "ProjectSelect": {
+            "id": "ProjectSelect",
             "properties": {
+                "page": {
+                    "type": "number"
+                },
                 "path": {
                     "type": "string"
+                },
+                "size": {
+                    "type": "number"
                 }
             },
             "type": "object"
@@ -96,11 +102,17 @@
             ],
             "type": "object"
         },
-        "TranslateFirst": {
-            "id": "TranslateFirst",
+        "TranslateSelect": {
+            "id": "TranslateSelect",
             "properties": {
+                "page": {
+                    "type": "number"
+                },
                 "path": {
                     "type": "string"
+                },
+                "size": {
+                    "type": "number"
                 }
             },
             "type": "object"

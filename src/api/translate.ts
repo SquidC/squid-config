@@ -1,3 +1,5 @@
+import { Page } from "./page";
+
 /**
  * @id TranslateAdd
  */
@@ -7,8 +9,8 @@ export interface TranslateAdd {
 }
 
 /**
- * @id TranslateFirst
+ * @id TranslateSelect
  */
-export interface TranslateFirst {
+export interface TranslateSelect extends Page {
   path?: string
 }

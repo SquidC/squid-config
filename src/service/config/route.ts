@@ -38,6 +38,20 @@ export default (s: ServiceContext) => ({
   },
 
   /**
+    * route dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+    * route edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
    * route select
   */
   select: async (params: RouteSelete) => {

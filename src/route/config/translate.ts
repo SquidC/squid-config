@@ -20,6 +20,20 @@ export default (svr: services) => ({
   },
 
   /**
+    * translate dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+    * translate edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
     * translate select
   */
   select: async (c: Context, next: Next) => {

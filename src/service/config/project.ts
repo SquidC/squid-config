@@ -21,6 +21,20 @@ export default (s: ServiceContext) => ({
   },
 
   /**
+    * project dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+    * project edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
    * project select
   */
   select: async (params: ProjectSelect) => {

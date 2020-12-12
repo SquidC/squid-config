@@ -21,6 +21,20 @@ export default (svr: services) => ({
   },
 
   /**
+    * Router dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+  * Router edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
     * Router select
   */
   select: async (c: Context, next: Next) => {

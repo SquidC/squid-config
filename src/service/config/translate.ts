@@ -18,6 +18,20 @@ export default (s: ServiceContext) => ({
   },
 
   /**
+    * translate dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+    * translate edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
    * translate select
   */
   select: async (params: TranslateSelect) => {

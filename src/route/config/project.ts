@@ -21,6 +21,20 @@ export default (svr: services) => ({
   },
 
   /**
+    * project dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+  * project edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
     * project select
   */
   select: async (c: Context, next: Next) => {

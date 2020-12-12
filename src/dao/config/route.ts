@@ -16,6 +16,20 @@ export default (dao: DaoContext) => ({
   },
 
   /**
+    * project dels
+  */
+  dels: ()=> {
+    //
+  },
+
+  /**
+    * project edit
+  */
+  edit: ()=> {
+    //
+  },
+
+  /**
    * Router select
    */
   select: async (page: Page, projectId?: string, version?: string) => {

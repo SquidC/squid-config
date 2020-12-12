@@ -35,6 +35,17 @@ export default (dao: DaoContext) => ({
   },
 
   /**
+    * Router edit
+  */
+  edit: async (_id: string, obj: Router)=> {
+    return await dao.mongo.getMongoRepository(Router)
+      .findOneAndUpdate(
+        {_id: new ObjectID(_id) as any},
+        {$set: obj}
+      )
+  },
+
+  /**
    * Router select
    */
   select: async (page: Page, projectId?: string, version?: string) => {

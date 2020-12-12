@@ -1,6 +1,6 @@
 import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
-import { RouteAdd, RouteDels, RouteSelete } from "src/api/route"
+import { RouteAdd, RouteDels, RouteEdit, RouteSelete } from "src/api/route"
 import { formatPage } from "src/api/base"
 import { services } from "."
 
@@ -32,6 +32,20 @@ export default (svr: services) => ({
       return
     }
     const res = await svr.config.route.dels(params)
+    c.json(ecode.OK, res, next)
+  },
+
+  /**
+  * Router edit
+  */
+  edit: async (c: Context, next: Next)=> {
+    const params: RouteEdit = c.request.body
+    const err = c.validate("RouteEdit", params)
+    if(err) {
+      c.json(ecode.ParamsErr, null, next)
+      return
+    }
+    const res = await svr.config.route.edit(params)
     c.json(ecode.OK, res, next)
   },
 

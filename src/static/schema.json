@@ -113,24 +113,16 @@
                 "id": {
                     "type": "string"
                 },
-                "project": {
-                    "type": "string"
+                "meta": {
                 },
-                "route": {
-                    "items": {
-                        "$ref": "api#/definitions/route"
-                    },
-                    "type": "array"
-                },
-                "version": {
+                "path": {
                     "type": "string"
                 }
             },
             "required": [
                 "id",
-                "project",
-                "route",
-                "version"
+                "meta",
+                "path"
             ],
             "type": "object"
         },

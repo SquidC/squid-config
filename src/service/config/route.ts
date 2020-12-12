@@ -3,7 +3,7 @@
  */
 import { Tree2Table } from "lib/utils/tree";
 import { ObjectId } from "mongodb";
-import { RouteAdd, RouteDels, RouteSelete } from "src/api/route";
+import { RouteAdd, RouteDels, RouteEdit, RouteSelete } from "src/api/route";
 import { Router } from "src/models/route";
 import { ServiceContext } from ".";
 
@@ -42,6 +42,17 @@ export default (s: ServiceContext) => ({
   */
   dels: async (params: RouteDels)=> {
     return await s.config.route.dels(params.version)
+  },
+
+  /**
+    * route edit
+    * 只可以改属性 不可以改层级
+  */
+  edit: async (params: RouteEdit)=> {
+    const obj = new Router()
+    obj.path = params.path
+    obj.meta = params.meta
+    return await s.config.route.edit(params.id, obj)
   },
 
   /**

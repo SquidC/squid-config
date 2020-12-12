@@ -1,4 +1,4 @@
-import { Dels, Page } from "./base";
+import { Page } from "./base";
 
 export interface route {
   path: string;
@@ -17,8 +17,10 @@ export interface RouteSelete extends Page {
   version?: string;
 }
 
-export interface RouteEdit extends RouteAdd {
+export interface RouteEdit { // 不可以改层级
   id: string;
+  path: string;
+  meta: any;
 }
 
 export interface RouteDels {

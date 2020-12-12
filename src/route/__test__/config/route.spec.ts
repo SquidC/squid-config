@@ -1,5 +1,5 @@
 import request from "lib/net/http/client"
-import { RouteAdd, RouteDels, RouteSelete } from "src/api/route"
+import { RouteAdd, RouteDels, RouteEdit, RouteSelete } from "src/api/route"
 import mockData from "./mock/route"
 
 const BASEURL = "http://localhost:8000/config"
@@ -18,6 +18,16 @@ const dels = (data: RouteDels) => {
   // 发送请求
   return request({
     url: BASEURL+"/route/dels",
+    method: "post",
+    data: data
+  })
+}
+
+
+const edit = (data: RouteEdit) => {
+  // 发送请求
+  return request({
+    url: BASEURL+"/route/edit",
     method: "post",
     data: data
   })
@@ -42,6 +52,7 @@ describe("route", () => {
     })
     ids.push(...req.data.data.list.map((el: any) => el._id))
   })
+
   test("add", async () => {
     // 请求数据
     mockData.add.forEach(async el => {
@@ -56,6 +67,15 @@ describe("route", () => {
       const req = await select(el)
       expect(req.data.data.list.length).toBeGreaterThanOrEqual(1)
     })
+  })
+
+  test("edit", async () => {
+    // 请求数据
+    const req = await edit({
+      id: ids[0],
+      ...mockData.edit,
+    })
+    expect(req.data.code).toBe(0)
   })
 
   test("dels", async () => {

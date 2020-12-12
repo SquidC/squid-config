@@ -84,5 +84,13 @@ export default {
   }],
   dels: {
     version: "1.0.0"
+  },
+  edit: {
+    path: "/menuTest_edit",
+    meta: {
+      icon: "build_edit",
+      name: "menu test_edit",
+      defaultName: "菜单测试页面_edit",
+    },
   }
 }

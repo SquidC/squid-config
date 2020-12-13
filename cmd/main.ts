@@ -1,7 +1,7 @@
 import chalk from "chalk"
-import logger = require("../lib/log")
-import config = require("../src/conf")
-import router = require("../src/route")
+import logger = require("lib/log")
+import config = require("src/conf")
+import router = require("src/route")
 
 export default function main(opts: ArgsOptions) {
   const start = Date.now()

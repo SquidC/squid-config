@@ -1,7 +1,7 @@
-import orm = require("../lib/database/mysql");
-import config = require("../src/conf");
+import orm = require("lib/database/mysql");
+import config = require("src/conf");
 import mysql = require("mysql")
-import {system} from "../lib/log"
+import {system} from "lib/log"
 
 function query(conn:mysql.Connection, sql: string): Promise<Array<any>> {
   return new Promise((resolve,reject) => {

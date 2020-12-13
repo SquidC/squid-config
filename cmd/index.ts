@@ -1,12 +1,18 @@
+#!/usr/bin/env node
+
+// hack
+process.env.NODE_PATH = require("path").resolve(__dirname, "../");
+require("module").Module._initPaths();
+
 import { Command, program } from "commander";
-import chalk = require("chalk")
+import chalk from "chalk";
 import main from "./main"
 import migrateMysql from "./migrate_mysql"
 import {
   suggestCommands,
   enhanceErrorMessages,
   cleanArgs
-} from "../lib/command"
+} from "lib/command"
 
 //////////////////////////run//////////////////////////////////////////
 

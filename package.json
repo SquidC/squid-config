@@ -9,7 +9,8 @@
     "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate",
     "gen": "typescript-json-schema ./src/api/**/*.ts * -o ./src/static/schema.json --required --id=api --strictNullChecks",
     "test": "cross-env NODE_PATH=. jest",
-    "test-c": "cross-env NODE_PATH=. jest --coverage"
+    "test-c": "cross-env NODE_PATH=. jest --coverage",
+    "build": "tsc"
   },
   "jest": {
     "testEnvironment": "node"
